@@ -1,29 +1,25 @@
-import './App.css';
+import {
+  Routes,
+  Route,
+  BrowserRouter
+} from "react-router-dom";
+import Public from './pages/Public'
+import Private from './pages/Private'
+import Login from './pages/Login'
+import PrivateOutlet from './pages/PrivateOutlet'
+import Navigation from './components/Navigation'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Public />} />
+        <Route path="/private" element={<PrivateOutlet />}>
+          <Route path="" element={<Private />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
